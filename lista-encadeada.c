@@ -8,7 +8,22 @@ typedef struct lista {
 } TLista;
 
 TLista* exclui(TLista* li, int valor) {
-    //TODO: completar aqui
+    while (li != NULL && li->info == valor){
+        TLista* lixo = li;
+        li = lixo->prox;
+        free(lixo);
+    }
+    TLista* q = li;
+    while (q != NULL){
+        if (q->prox != NULL && q->prox->info == valor){
+            TLista* lixo = q->prox;
+            q->prox = lixo->prox;
+            free(lixo);
+        } else {
+            q = q->prox;
+        }
+    }   
+    return li;
 }
 
 void imprime_lista(TLista *li) {
